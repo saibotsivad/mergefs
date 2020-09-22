@@ -1,0 +1,33 @@
+{
+  "name": "mergefs",
+  "version": "0.0.0",
+  "description": "Like Object.assign but recursive and for files.",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "author": {
+    "name": "Tobias Davis",
+    "email": "tobias@davistobias.com",
+    "url": "https://davistobias.com"
+  },
+  "keywords": [
+    "merge",
+    "files",
+    "recursive"
+  ],
+  "scripts": {
+    "build": "bundt",
+    "test": "node -r esm test.js"
+  },
+  "license": "VOL",
+  "dependencies": {
+    "totalist": "^2.0.0"
+  },
+  "devDependencies": {
+    "bundt": "^1.1.1",
+    "esm": "^3.2.25"
+  }
+}
