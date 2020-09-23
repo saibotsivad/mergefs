@@ -19,6 +19,7 @@ Change categories are:
 ## [0.0.1] - 2020-09-22
 ### Added
 - TypeScript definition file.
+- Actual filesystem test, but it doesn't automatically run yet.
 
 ## [0.0.0] - 2020-09-20
 ### Added
