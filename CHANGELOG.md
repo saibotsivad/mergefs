@@ -14,7 +14,7 @@ Change categories are:
 * `Fixed` for any bug fixes.
 * `Security` to invite users to upgrade in case of vulnerabilities.
 
-## [Unreleased]
+## [1.0.0] - 2020-09-23
 
 ### Added
 - TypeScript definition file.
@@ -29,6 +29,6 @@ Change categories are:
 ### Added
 - Initialization with basic structure.
 
-[Unreleased]: https://github.com/saibotsivad/mergefs/compare/v0.0.1...HEAD
-[0.0.1]: https://github.com/saibotsivad/mergefs/compare/v0.0.0...v0.0.1
+[Unreleased]: https://github.com/saibotsivad/mergefs/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/saibotsivad/mergefs/compare/v0.0.0...v1.0.0
 [0.0.0]: https://github.com/saibotsivad/mergefs/tree/v0.0.0
