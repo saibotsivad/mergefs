@@ -14,6 +14,11 @@ Change categories are:
 * `Fixed` for any bug fixes.
 * `Security` to invite users to upgrade in case of vulnerabilities.
 
+## [1.0.1] - 2020-09-23
+
+### Changed
+- Just some minor documentation updates for consistency.
+
 ## [1.0.0] - 2020-09-23
 
 ### Added
@@ -29,6 +34,7 @@ Change categories are:
 ### Added
 - Initialization with basic structure.
 
-[Unreleased]: https://github.com/saibotsivad/mergefs/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/saibotsivad/mergefs/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/saibotsivad/mergefs/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/saibotsivad/mergefs/compare/v0.0.0...v1.0.0
 [0.0.0]: https://github.com/saibotsivad/mergefs/tree/v0.0.0

@@ -86,7 +86,7 @@ input
         \- file.txt // "text-6"
 ```
 
-#### Example 1: Merge Everything
+#### The Example 1: Merge Everything
 
 If you wanted to merge all input folders, you would do:
 
@@ -113,7 +113,7 @@ output
      \- file.txt // "text-6"
 ```
 
-#### Example 2: Change Merge Order
+#### The Example 2: Change Merge Order
 
 If we take the same example but change the order of the input folders:
 
@@ -140,7 +140,7 @@ output
      \- file.txt // "text-4"
 ```
 
-### Example 3: Merge Specific Files
+### The Example 3: Merge Specific Files
 
 If we take the same input folder structure but list specific files:
 
@@ -166,7 +166,7 @@ output
      \- file.txt // "text-6"
 ```
 
-## Path Details
+## The Path Details
 
 Both the input and output paths will be resolved using the builtin NodeJS
 [`path.resolve`](https://nodejs.org/api/path.html#path_path_resolve_paths).
