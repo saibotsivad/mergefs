@@ -11,28 +11,6 @@ In addition, you can also list specific filepaths, in which case *only*
 those files will be merged from the input folders and written to the
 output folders.
 
-## The CLI
-
-You specify one output with `--output` or `-o` and multiple inputs
-with `--input` or `-i` for example:
-
-```bash
-mergefs -o="./out" -i="./foo" -i="./bar" -i="./bizz"
-```
-
-Remember that the order of parameters matters here: the last will override
-the first, if there are files with the same name.
-
-With `--single` or `-s` you can specify merging a single file path. In
-this case, only the single file is merged to the output. For example:
-
-```bash
-mergefs -s="fizz/buzz.txt" -o="./out" -i="./foo" -i="./bar" -i="./bizz"
-```
-
-In this case, if `./bizz/fizz/buzz.txt` exists, it will be copied over
-to `./out/fizz/buzz.txt` and that will be the end of the process.
-
 ## The Library
 
 You can import or require or whatnot the usual ways:

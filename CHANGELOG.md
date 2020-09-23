@@ -23,6 +23,7 @@ Change categories are:
 ### Changed
 - Instead of specifying a single file, provide a list of specific
   files to merge.
+- Fully drop the CLI, as I don't want the extra bytes downloaded.
 
 ## [0.0.0] - 2020-09-20
 ### Added
