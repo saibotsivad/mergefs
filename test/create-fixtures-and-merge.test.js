@@ -61,11 +61,11 @@ const test = async () => {
 		'text-6'
 	)
 
-	// single file
+	// files
 	fs.writeFileSync(path.join(rootInput, '003/a/b.txt'), 'single', 'utf8')
 	await mergefs(Object.assign(
 		options,
-		{ single: 'a/b.txt' }
+		{ files: [ 'a/b.txt' ] }
 	))
 	assert.equal(
 		fs.readFileSync(path.join(rootOutput, 'a/b.txt'), 'utf8'),

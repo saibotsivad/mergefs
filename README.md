@@ -7,8 +7,8 @@ Like `Object.assign` but recursive and for files.
 Specify an output folder, and any number of input folders. They will
 be merged in order to the output, overwriting files duplicated by name.
 
-In addition, you can also specify a single filepath, in which case *only*
-that one file will be merged from the input folders and written to the
+In addition, you can also list specific filepaths, in which case *only*
+those files will be merged from the input folders and written to the
 output folders.
 
 ## The CLI
@@ -43,23 +43,150 @@ const mergefs = require('mergefs')
 import { mergefs } from 'mergefs'
 ```
 
-Then you call it in a similar way, specifying a single output path and an
-ordered array of input paths, with an optional single file path:
+Then you call that function, specifying a single output path and an
+ordered array of input paths, with an optional list of file paths:
 
 ```js
 await mergefs({
+	// required
 	output: './out',
+	// required
 	input: [
 		'./foo',
 		'./bar',
 		'./bizz'
 	],
-	single: 'fizz/buzz.txt'
+	// optional
+	files: [
+		'fizz/buzz.txt'
+	]
 });
 ```
 
-There is no output from calling this function, and if there is an error
+There is no output from calling this function. If there is an error
 it will be thrown.
+
+## The API
+
+#### `output: String` **required**
+
+The path to the output folder.
+
+If the folder doesn't exist, it will be made.
+
+#### `input: Array<String>` **required**
+
+An *ordered* list of paths to input folders.
+
+The order matters: the last input will override the first, if
+there are files with the same name.
+
+#### `files: Array<String>`
+
+An unordered list of specific file paths to merge.
+
+## The Examples
+
+Suppose you have a folder structure like this:
+
+```
+input
+  |- 001
+  |  |- aaa
+  |  |  \- file.txt // "text-1"
+  |  \- bbb
+  |  |  \- file.txt // "text-2"
+  |- 002
+  |  |- aaa
+  |  |  \- file.txt // "text-3"
+  |  \- ccc
+  |     \- file.txt // "text-4"
+  \- 003
+     |- bbb
+     |  \- file.txt // "text-5"
+     \- ccc
+        \- file.txt // "text-6"
+```
+
+#### Example 1: Merge Everything
+
+If you wanted to merge all input folders, you would do:
+
+```js
+await mergefs({
+	output: '/output',
+	input: [
+		'/input/001',
+		'/input/002',
+		'/input/003'
+	]
+});
+```
+
+Then the structure of the output folder would be:
+
+```
+output
+  |- aaa
+  |  \- file.txt // "text-3"
+  |- bbb
+  | \- file.txt // "text-5"
+  \- ccc
+     \- file.txt // "text-6"
+```
+
+#### Example 2: Change Merge Order
+
+If we take the same example but change the order of the input folders:
+
+```js
+await mergefs({
+	output: '/output',
+	input: [
+		'/input/003',
+		'/input/002',
+		'/input/001'
+	]
+});
+```
+
+Then the structure of the output folder would be:
+
+```
+output
+  |- aaa
+  |  \- file.txt // "text-1"
+  |- bbb
+  | \- file.txt // "text-2"
+  \- ccc
+     \- file.txt // "text-4"
+```
+
+### Example 3: Merge Specific Files
+
+If we take the same input folder structure but list specific files:
+
+```js
+await mergefs({
+	output: '/output',
+	input: [
+		'/input/001',
+		'/input/002',
+		'/input/003'
+	],
+	files: [
+		'ccc/file.txt'
+	]
+});
+```
+
+Then the structure of the output folder would be:
+
+```
+output
+  \- ccc
+     \- file.txt // "text-6"
+```
 
 ## Path Details
 
@@ -69,14 +196,11 @@ Both the input and output paths will be resolved using the builtin NodeJS
 You can use relative or absolute paths, and they will be interpreted using
 that module.
 
-The `single` property will be resolved using the input paths using
+The `files` properties will be resolved with the input paths using
 [`path.join`](https://nodejs.org/api/path.html#path_path_join_paths)
-and then the `path.resolve` on the resulting filepath.
+and then `path.resolve` on the resulting filepath.
 
 ## The License
 
 Published and released under the
 [Very Open License](http://veryopenlicense.com).
-
-
-
