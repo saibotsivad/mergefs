@@ -20,11 +20,19 @@
     "files",
     "recursive"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saibotsivad/mergefs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saibotsivad/mergefs/issues"
+  },
+  "homepage": "https://github.com/saibotsivad/mergefs#readme",
+  "license": "VOL",
   "scripts": {
     "build": "bundt",
     "test": "node -r esm test/create-fixtures-and-merge.test.js"
   },
-  "license": "VOL",
   "dependencies": {
     "totalist": "^2.0.0"
   },
