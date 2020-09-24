@@ -1,6 +1,6 @@
 {
   "name": "mergefs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Like Object.assign but recursive and for files.",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
