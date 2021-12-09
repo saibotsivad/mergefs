@@ -63,27 +63,51 @@ there are files with the same name.
 
 An unordered list of specific file paths to merge.
 
+#### `strategy: async Function<{ cwd: string, filepaths: Array<string>, output: string }>`
+
+By default the merge strategy is last-file-wins, meaning that the
+last file in the set of folders will be the one written.
+
+You can, however, specify a custom merge strategy function. In this
+case, you are responsible for reading and writing **all** files (or
+copying, etc., whatever your specific merge strategy is).
+
+For example, if your merge strategy is to append files, you might
+have something like:
+
+```js
+import { readFileSync, writeFileSync } from 'fs'
+import { join } from 'path'
+const strategy = ({ cwd, filepaths, output }) => {
+	let string = ''
+	for (const filepath of filepaths) {
+		string += readFileSync(join(cwd, filepath), 'utf8')
+	}
+	writeFileSync(output, string, 'utf8')
+};
+```
+
 ## The Examples
 
 Suppose you have a folder structure like this:
 
 ```
 input
-  |- 001
-  |  |- aaa
-  |  |  \- file.txt // "text-1"
-  |  \- bbb
-  |  |  \- file.txt // "text-2"
-  |- 002
-  |  |- aaa
-  |  |  \- file.txt // "text-3"
-  |  \- ccc
-  |     \- file.txt // "text-4"
-  \- 003
-     |- bbb
-     |  \- file.txt // "text-5"
-     \- ccc
-        \- file.txt // "text-6"
+  ├─ 001
+  │  ├─ aaa
+  │  │  └─ file.txt // "text-1"
+  │  └─ bbb
+  │     └─ file.txt // "text-2"
+  ├─ 002
+  │  ├─ aaa
+  │  │  └─ file.txt // "text-3"
+  │  └─ ccc
+  │     └─ file.txt // "text-4"
+  └─ 003
+     ├─ bbb
+     │  └─ file.txt // "text-5"
+     └─ ccc
+        └─ file.txt // "text-6"
 ```
 
 #### The Example 1: Merge Everything
@@ -105,12 +129,12 @@ Then the structure of the output folder would be:
 
 ```
 output
-  |- aaa
-  |  \- file.txt // "text-3"
-  |- bbb
-  | \- file.txt // "text-5"
-  \- ccc
-     \- file.txt // "text-6"
+  ├─ aaa
+  │  └─ file.txt // "text-3"
+  ├─ bbb
+  │  └─ file.txt // "text-5"
+  └─ ccc
+     └─ file.txt // "text-6"
 ```
 
 #### The Example 2: Change Merge Order
@@ -132,12 +156,12 @@ Then the structure of the output folder would be:
 
 ```
 output
-  |- aaa
-  |  \- file.txt // "text-1"
-  |- bbb
-  | \- file.txt // "text-2"
-  \- ccc
-     \- file.txt // "text-4"
+  ├─ aaa
+  │  └─ file.txt // "text-1"
+  ├─ bbb
+  │  └─ file.txt // "text-2"
+  └─ ccc
+     └─ file.txt // "text-4"
 ```
 
 ### The Example 3: Merge Specific Files
@@ -162,8 +186,8 @@ Then the structure of the output folder would be:
 
 ```
 output
-  \- ccc
-     \- file.txt // "text-6"
+  └─ ccc
+     └─ file.txt // "text-6"
 ```
 
 ## The Path Details
